@@ -14,20 +14,24 @@ dependencies:
   - name: jenkins
     version: 5.7.12
     repository: https://charts.jenkins.io
-  - name: istiod
-    version: 1.24.0-rc.0
-    repository: https://istio-release.storage.googleapis.com/charts
-    namespace: istio-system
-    createNamespace: true
   - name: prometheus
     version: 25.29.0
     repository: https://prometheus-community.github.io/helm-charts
     namespace: monitoring
-    createNamespace: true
   - name: grafana
     version: 8.5.11
     repository: https://grafana.github.io/helm-charts
     namespace: monitoring
+
+repository:
+  - name: istiod
+    url: https://istio-release.storage.googleapis.com/charts
+
+releases:
+  - name: istiod
+    version: 1.24.0-rc.0
+    repository: https://istio-release.storage.googleapis.com/charts
+    namespace: istio-system
     createNamespace: true
 
 mysql:
