@@ -26,9 +26,6 @@ dependencies:
     version: 8.5.11
     repository: https://grafana.github.io/helm-charts
     namespace: monitoring
-  - name: opentelemetry-collector
-    version: 0.108.0
-    repository: https://open-telemetry.github.io/opentelemetry-helm-charts
 
 mysql:
   auth:
