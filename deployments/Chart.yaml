@@ -48,4 +48,4 @@ mysql:
 istiod:
   hostRootFsMount:
     enabled: false
-  mountPropagation: HostToContainer
+    mountPropagation: HostToContainer
