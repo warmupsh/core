@@ -44,3 +44,7 @@ mysql:
     persistence:
       enabled: true
       size: 8Gi
+
+istiod:
+  hostRootFsMount:
+    enabled: false
