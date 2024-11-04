@@ -46,6 +46,5 @@ mysql:
       size: 8Gi
 
 prometheus:
-  hostRootFsMount:
+  persistentVolume:
     enabled: false
-    mountPropagation: HostToContainer
