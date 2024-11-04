@@ -1,0 +1,19 @@
+apiVersion: v2
+dependencies:
+  - name: mysql
+    version: 8.0.26
+    repository: https://charts.bitnami.com/bitnami
+  - name: jenkins
+    version: 3.5.7
+    repository: https://charts.jenkins.io
+
+mysql:
+  auth:
+    rootPassword: my-root-password
+    database: my-database
+    username: my-user
+    password: my-password
+  primary:
+    persistence:
+      enabled: true
+      size: 8Gi
