@@ -14,21 +14,6 @@ dependencies:
   - name: jenkins
     version: 5.7.12
     repository: https://charts.jenkins.io
-  - name: istio-official/istiod
-    version: 1.24.0-rc.0
-    repository: https://istio-release.storage.googleapis.com/charts
-    namespace: istio-system
-  - name: prometheus
-    version: 25.29.0
-    repository: https://prometheus-community.github.io/helm-charts
-    namespace: monitoring
-  - name: grafana
-    version: 8.5.11
-    repository: https://grafana.github.io/helm-charts
-    namespace: monitoring
-  - name: opentelemetry-collector
-    version: 0.108.0
-    repository: https://open-telemetry.github.io/opentelemetry-helm-charts
 
 mysql:
   auth:
