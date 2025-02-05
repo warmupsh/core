@@ -3,6 +3,7 @@ import { useParams, Link, Navigate } from 'react-router-dom';
 import ViewPage from '@/components/ViewPage'; // Asegúrate de tener este componente disponible
 import { teamDetails } from '@/data/teams'; // Importa teamDetails del datasource mokeado
 import { projectList } from '@/data/projects'; // Importa projectList del datasource mokeado
+import { memberList } from '@/data/members'; // Importa memberList del datasource mokeado
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'; // Asegúrate de tener estos componentes disponibles
 import { Button } from '@/components/ui/button'; // Asegúrate de tener este componente disponible
 import { getFavorites, toggleFavorite } from '@/utils/favorites'; // Importa las funciones de utilidades
@@ -24,6 +25,7 @@ export default function TeamView() {
   }
 
   const assignedProjects = projectList.filter(project => project.team_id === id);
+  const assignedMembers = memberList.filter(member => member.team_id === id);
   const totalPages = Math.ceil(assignedProjects.length / itemsPerPage);
   const paginatedProjects = assignedProjects.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
 
@@ -52,7 +54,7 @@ export default function TeamView() {
         </TableHeader>
         <TableBody>
           {paginatedProjects.map(project => (
-            <TableRow key={project.id}>
+            <TableRow key={`project_${project.id}`}>
               <TableCell>
                 <button onClick={() => handleToggleProjectFavorite(project.id)}>
                   {favorites[project.id] ? (
@@ -85,6 +87,31 @@ export default function TeamView() {
           Next
         </Button>
       </div>
+      <h2 className="text-xl font-bold mt-6">Team Members</h2>
+      <Table>
+        <TableHeader>
+          <TableRow>
+            <TableHead>Member Name</TableHead>
+            <TableHead>Actions</TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          {assignedMembers.map(member => (
+            <TableRow key={`member_${member.id}`}>
+              <TableCell>
+                <Link to={`/members/${member.id}`} className="text-blue-500">
+                  {member.name}
+                </Link>
+              </TableCell>
+              <TableCell>
+                <Link to={`/members/${member.id}`} className="text-blue-500">
+                  View
+                </Link>
+              </TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
     </ViewPage>
   );
 }

@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate, useLocation, Link } from 'react-router-dom';
+import React from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { Separator } from '@/components/ui/separator'; // Asegúrate de tener este componente disponible
 import Layout from '@/components/Layout';
 import { Button } from '@/components/ui/button'; // Asegúrate de tener este componente disponible
@@ -37,7 +37,7 @@ export default function ViewPage({ children, itemId, collection, toggleFavorite,
       <Breadcrumb className="mb-4">
         <BreadcrumbList>
           <BreadcrumbItem>
-            <BreadcrumbLink href="/">Home</BreadcrumbLink>
+            <BreadcrumbLink href="/dashboard">Home</BreadcrumbLink>
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
@@ -57,12 +57,12 @@ export default function ViewPage({ children, itemId, collection, toggleFavorite,
           {pathnames.map((value, index) => {
             const to = `/${pathnames.slice(0, index + 1).join('/')}`;
             return (
-              <BreadcrumbItem key={to}>
+              <BreadcrumbItem key={`item_${index}`}>
                 {index < pathnames.length - 1 && <BreadcrumbLink href={to}>
                   {value}
                 </BreadcrumbLink>}
-                {index < pathnames.length - 1 && <BreadcrumbSeparator />}
-                {index === pathnames.length - 1 && <BreadcrumbItem>
+                {index < pathnames.length - 1 && <BreadcrumbSeparator/>}
+                {index === pathnames.length - 1 && <BreadcrumbItem >
                   <BreadcrumbPage>{value}</BreadcrumbPage>
                 </BreadcrumbItem>}
               </BreadcrumbItem>

@@ -1,4 +1,3 @@
-import React from 'react';
 import { Separator } from '@/components/ui/separator'; // Asegúrate de tener este componente disponible
 import { Input } from '@/components/ui/input'; // Asegúrate de tener este componente disponible
 import Layout from '@/components/Layout';
@@ -11,7 +10,7 @@ interface ListPageProps {
   searchTerm: string;
   setSearchTerm: (term: string) => void;
   favorites: { [key: string]: boolean };
-  toggleFavorite: (id: string | number) => void;
+  toggleFavorite: (id: string ) => void;
   items: { id: number | string, name: string, team?: string, team_id?: string }[];
 }
 
@@ -42,12 +41,12 @@ export default function ListPage({ title, searchTerm, setSearchTerm, favorites, 
       <Separator className="mb-6" />
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {sortedItems.map((item, index) => (
-          <Card key={index}>
+          <Card key={`${title}_${index}`}>
             <CardContent className="p-6">
               <div className="flex flex-col space-y-2">
                 <div className="flex justify-between items-center">
                   <div className="flex items-center space-x-2">
-                    <button onClick={() => toggleFavorite(item.id)}>
+                    <button onClick={() => toggleFavorite(item.id.toString())}>
                       {favorites[item.id] ? (
                         <Star className="text-yellow-500 w-6 h-6" />
                       ) : (

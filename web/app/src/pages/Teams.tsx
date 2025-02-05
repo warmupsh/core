@@ -13,8 +13,8 @@ export default function Teams() {
     setFavorites(getFavorites('team'));
   }, []);
 
-  const handleToggleFavorite = (teamName: string) => {
-    setFavorites(toggleFavorite('team', teamName));
+  const handleToggleFavorite = (teamId: string) => {
+    setFavorites(toggleFavorite('team', teamId));
   };
 
   return (

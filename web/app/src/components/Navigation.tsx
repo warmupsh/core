@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { 
   LayoutDashboard, 
@@ -7,7 +7,8 @@ import {
   Triangle,
   LogOut,
   ChevronLeft,
-  ChevronRight
+  ChevronRight,
+  Circle // Import Circle icon
 } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -25,6 +26,7 @@ export default function Navigation() {
     { icon: LayoutDashboard, label: 'Overview', path: '/dashboard' },
     { icon: Triangle, label: 'Catalog', path: '/catalog' },
     { icon: Users, label: 'Teams', path: '/teams' },
+    { icon: Circle, label: 'Members', path: '/members' }, // Add Members link
     { icon: Settings, label: 'Settings', path: '/settings' },
   ];
 
