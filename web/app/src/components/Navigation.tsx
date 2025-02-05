@@ -3,7 +3,8 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { 
   LayoutDashboard, 
   Users, 
-  Settings, 
+  Settings,
+  Triangle,
   LogOut,
   ChevronLeft,
   ChevronRight
@@ -22,7 +23,8 @@ export default function Navigation() {
 
   const navItems = [
     { icon: LayoutDashboard, label: 'Overview', path: '/dashboard' },
-    { icon: Users, label: 'Team', path: '/team' },
+    { icon: Triangle, label: 'Catalog', path: '/catalog' },
+    { icon: Users, label: 'Teams', path: '/teams' },
     { icon: Settings, label: 'Settings', path: '/settings' },
   ];
 

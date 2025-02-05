@@ -4,6 +4,11 @@ import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
 import Team from './pages/Team';
 import Settings from './pages/Settings';
+import Catalog from './pages/Catalog';
+import Teams from './pages/Teams';
+import TeamView from './pages/TeamView';
+import ProjectView from './pages/ProjectView';
+import NotFound from './pages/NotFound';
 
 function App() {
   return (
@@ -11,9 +16,15 @@ function App() {
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/catalog" element={<Catalog />} />
         <Route path="/team" element={<Team />} />
         <Route path="/settings" element={<Settings />} />
+        <Route path="/teams" element={<Teams />} />
+        <Route path="/teams/:id" element={<TeamView />} />
+        <Route path="/projects/:id" element={<ProjectView />} />
+        <Route path="/projects" element={<Navigate to="/catalog" replace />} />
         <Route path="/" element={<Navigate to="/login" replace />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   );
