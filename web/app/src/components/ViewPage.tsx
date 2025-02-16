@@ -10,12 +10,11 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigge
 interface ViewPageProps {
   children: React.ReactNode;
   itemId: string;
-  collection: string;
   toggleFavorite: (id: string) => void;
   favorites: { [key: string]: boolean };
 }
 
-export default function ViewPage({ children, itemId, collection, toggleFavorite, favorites }: ViewPageProps) {
+export default function ViewPage({ children, itemId, toggleFavorite, favorites }: ViewPageProps) {
   const navigate = useNavigate();
   const location = useLocation();
   const pathnames = location.pathname.split('/').filter(x => x);
