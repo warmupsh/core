@@ -1,0 +1,18 @@
+# workdir: web/app
+# Trabajaremos solo en la UI con API mockeada en resources.
+
+# Configuración de idioma y estructura del proyecto
+# Este es un proyecto monorepo que sigue la estructura de carpetas de https://github.com/golang-standards/project-layout
+# Su backend será escrito en golang y su frontend en React + Vite con componentes de shadcn/ui.
+
+# Frontend/UI prompts:
+# El frontend se encuentra en web/app
+# Las rutas están en web/app/src/App.tsx
+# Los componentes de shadcn/ui están en el path web/app/src/components/ui
+# Las páginas nuevas se deben crear en web/app/src/pages
+# Las entidades que luego serán consumidas por APIs deben ser creadas como mock en web/app/src/data
+# Todas las pages deben extender de Layout o de páginas bases como: ListPage.tsx o ViewPage.tsx
+# El menú se encuentra en web/app/src/components/Navigation.tsx
+# Utiliza los componentes de shadcn/ui para nuevos componentes
+
+# Nota: Todas las respuestas serán proporcionadas en español

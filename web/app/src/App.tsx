@@ -11,6 +11,7 @@ import ProjectView from './pages/ProjectView';
 import Member from './pages/Member';
 import MemberView from './pages/MemberView';
 import NotFound from './pages/NotFound';
+import EditMemberPage from './pages/EditMemberPage';
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
         <Route path="/projects/:id" element={<ProjectView />} />
         <Route path="/members" element={<Member />} />
         <Route path="/members/:id" element={<MemberView />} />
+        <Route path="/members/:id/edit" element={<EditMemberPage />} />
         <Route path="/projects" element={<Navigate to="/catalog" replace />} />
         <Route path="/" element={<Navigate to="/login" replace />} />
         <Route path="*" element={<NotFound />} />

@@ -3,6 +3,7 @@ import { useParams, Navigate, Link } from 'react-router-dom';
 import ViewPage from '@/components/ViewPage';
 import { memberDetails } from '@/data/members';
 import { getFavorites, toggleFavorite } from '@/utils/favorites';
+import { Button } from '@/components/ui/button'; // Importar el componente Button de shadcn
 
 const MemberView = () => {
   const [favorites, setFavorites] = useState<{ [key: string]: boolean }>({});
@@ -29,6 +30,9 @@ const MemberView = () => {
         Team: <Link to={`/teams/${member.team_id}`} className="text-blue-500">{member.team}</Link>
       </p>
       <p>{member.description}</p>
+      <Link to={`/members/${id}/edit`}>
+        <Button>Editar Miembro</Button>
+      </Link>
     </ViewPage>
   );
 };
