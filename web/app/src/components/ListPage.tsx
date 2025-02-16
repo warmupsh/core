@@ -1,17 +1,17 @@
-import { Separator } from '@/components/ui/separator'; // Asegúrate de tener este componente disponible
-import { Input } from '@/components/ui/input'; // Asegúrate de tener este componente disponible
+import { Separator } from '@/components/ui/separator';
+import { Input } from '@/components/ui/input';
 import Layout from '@/components/Layout';
-import { Star, ExternalLink } from 'lucide-react'; // Asegúrate de tener estos íconos disponibles
-import { Card, CardContent } from "@/components/ui/card"; // Asegúrate de tener estos componentes disponibles
-import { Link } from 'react-router-dom'; // Importa Link de react-router-dom
+import { Star, ExternalLink } from 'lucide-react';
+import { Card, CardContent } from "@/components/ui/card";
+import { Link } from 'react-router-dom';
 
 interface ListPageProps {
   title: string;
   searchTerm: string;
   setSearchTerm: (term: string) => void;
   favorites: { [key: string]: boolean };
-  toggleFavorite: (id: string ) => void;
-  items: { id: number | string, name: string, team?: string, team_id?: string }[];
+  toggleFavorite: (id: string) => void;
+  items: { id: number | string, name: string, description: string, teams?: { name: string, team_id: string }[] }[];
 }
 
 export default function ListPage({ title, searchTerm, setSearchTerm, favorites, toggleFavorite, items }: ListPageProps) {
@@ -61,10 +61,15 @@ export default function ListPage({ title, searchTerm, setSearchTerm, favorites, 
                 <Link to={`/${title.toLowerCase()}/${item.id}`} className="font-medium">
                   {item.name}
                 </Link>
-                {item.team && item.team_id && (
-                  <Link to={`/teams/${item.team_id}`} className="text-sm text-blue-500">
-                    {item.team}
-                  </Link>
+                <p className="text-sm text-muted-foreground">{item.description}</p>
+                {item.teams && (
+                  <div className="text-sm text-blue-500">
+                    {item.teams.map(team => (
+                      <Link key={team.team_id} to={`/teams/${team.team_id}`} className="mr-2">
+                        {team.name}
+                      </Link>
+                    ))}
+                  </div>
                 )}
               </div>
             </CardContent>

@@ -1,10 +1,10 @@
 import React from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation, Link } from 'react-router-dom';
 import { Separator } from '@/components/ui/separator'; // Asegúrate de tener este componente disponible
 import Layout from '@/components/Layout';
 import { Button } from '@/components/ui/button'; // Asegúrate de tener este componente disponible
 import { ArrowLeft, Star } from 'lucide-react'; // Asegúrate de tener estos íconos disponibles
-import { Breadcrumb, BreadcrumbList, BreadcrumbItem, BreadcrumbLink, BreadcrumbSeparator, BreadcrumbEllipsis, BreadcrumbPage } from '@/components/ui/breadcrumb'; // Asegúrate de tener estos componentes disponibles
+import { Breadcrumb, BreadcrumbList, BreadcrumbItem, BreadcrumbSeparator, BreadcrumbEllipsis, BreadcrumbPage } from '@/components/ui/breadcrumb'; // Asegúrate de tener estos componentes disponibles
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 
 interface ViewPageProps {
@@ -37,7 +37,7 @@ export default function ViewPage({ children, itemId, collection, toggleFavorite,
       <Breadcrumb className="mb-4">
         <BreadcrumbList>
           <BreadcrumbItem>
-            <BreadcrumbLink href="/dashboard">Home</BreadcrumbLink>
+            <Link to="/dashboard">Home</Link>
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
@@ -56,16 +56,15 @@ export default function ViewPage({ children, itemId, collection, toggleFavorite,
           <BreadcrumbSeparator />
           {pathnames.map((value, index) => {
             const to = `/${pathnames.slice(0, index + 1).join('/')}`;
-            return (
-              <BreadcrumbItem key={`item_${index}`}>
-                {index < pathnames.length - 1 && <BreadcrumbLink href={to}>
+            return ( <BreadcrumbList key={`item_${index}`}>
+              <BreadcrumbItem>
+                {index < pathnames.length - 1 && <Link to={to}>
                   {value}
-                </BreadcrumbLink>}
-                {index < pathnames.length - 1 && <BreadcrumbSeparator/>}
-                {index === pathnames.length - 1 && <BreadcrumbItem >
-                  <BreadcrumbPage>{value}</BreadcrumbPage>
-                </BreadcrumbItem>}
+                </Link>}
+                {index === pathnames.length - 1 && <p>{value}</p>}
               </BreadcrumbItem>
+              {index < pathnames.length - 1 && <BreadcrumbSeparator />}
+              </BreadcrumbList>
             );
           })}
         </BreadcrumbList>

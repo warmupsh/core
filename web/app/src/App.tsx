@@ -8,13 +8,17 @@ import Catalog from './pages/Catalog';
 import Teams from './pages/Teams';
 import TeamView from './pages/TeamView';
 import ProjectView from './pages/ProjectView';
-import Member from './pages/Member'; // Import the new Member page
+import Member from './pages/Member';
 import MemberView from './pages/MemberView';
 import NotFound from './pages/NotFound';
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter 
+      future={{
+        v7_relativeSplatPath: true,
+        v7_startTransition: true,
+      }}>
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/dashboard" element={<Dashboard />} />

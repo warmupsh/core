@@ -12,7 +12,8 @@ const Member = () => {
   }, []);
 
   const handleToggleFavorite = (memberId: string) => {
-    setFavorites(toggleFavorite('member', memberId));
+      toggleFavorite('member', memberId);
+      setFavorites(getFavorites('member'));
   };
   return (
     <ListPage
@@ -20,7 +21,7 @@ const Member = () => {
       searchTerm={searchTerm}
       setSearchTerm={setSearchTerm}
       favorites={favorites}
-      toggleFavorite={toggleFavorite}
+      toggleFavorite={handleToggleFavorite}
       items={memberList}
     />
   );

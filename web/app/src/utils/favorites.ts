@@ -1,17 +1,15 @@
-export function getFavorites(collection: string): { [key: string]: boolean } {
-    const favorites = sessionStorage.getItem(`favorites_${collection}`);
-    return favorites ? JSON.parse(favorites) : {};
-}
+export const getFavorites = (type: string): { [key: string]: boolean } => {
+  const favorites = localStorage.getItem(`favorites_${type}`);
+  return favorites ? JSON.parse(favorites) : {};
+};
 
-export function toggleFavorite(collection: string, id: string): { [key: string]: boolean } {
-    const favorites = getFavorites(collection);
-
-    if (favorites[id]) {
-        delete favorites[id];
-    } else {
-        favorites[id] = true;
-    }
-
-    sessionStorage.setItem(`favorites_${collection}`, JSON.stringify(favorites));
-    return favorites;
-}
+export const toggleFavorite = (type: string, id: string): { [key: string]: boolean } => {
+  const favorites = getFavorites(type);
+  if (favorites[id]) {
+    delete favorites[id];
+  } else {
+    favorites[id] = true;
+  }
+  localStorage.setItem(`favorites_${type}`, JSON.stringify(favorites));
+  return favorites;
+};

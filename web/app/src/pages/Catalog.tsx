@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ListPage from '@/components/ListPage';
-import { projectList } from '@/data/projects'; // Importa projectList del datasource mokeado
-import { getFavorites, toggleFavorite } from '@/utils/favorites'; // Importa las funciones de utilidades
+import { projectList } from '@/data/projects';
+import { getFavorites, toggleFavorite } from '@/utils/favorites';
 
 export default function Catalog() {
   const [favorites, setFavorites] = useState<{ [key: string]: boolean }>({});

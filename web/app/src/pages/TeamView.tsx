@@ -13,18 +13,30 @@ export default function TeamView() {
   const { id } = useParams();
   const team = teamDetails[id as keyof typeof teamDetails];
   const [favorites, setFavorites] = useState<{ [key: string]: boolean }>({});
+  const [projectFavorites, setProjectFavorites] = useState<{ [key: string]: boolean }>({});
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 5;
 
   useEffect(() => {
-    setFavorites(getFavorites('project'));
+    setProjectFavorites(getFavorites('project'));
+    setFavorites(getFavorites('team'));
   }, []);
 
   if (!team) {
     return <Navigate to="/404" />;
   }
 
-  const assignedProjects = projectList.filter(project => project.team_id === id);
+  const assignedProjects = projectList.filter(project => 
+    project.teams.some(team => team.team_id === id)
+  ).sort((a, b) => {
+    const isAFavorite = projectFavorites[a.id] ? -1 : 1;
+    const isBFavorite = projectFavorites[b.id] ? -1 : 1;
+    if (isAFavorite !== isBFavorite) {
+      return isAFavorite - isBFavorite;
+    }
+    return a.name.localeCompare(b.name);
+  });
+
   const assignedMembers = memberList.filter(member => member.team_id === id);
   const totalPages = Math.ceil(assignedProjects.length / itemsPerPage);
   const paginatedProjects = assignedProjects.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
@@ -36,7 +48,7 @@ export default function TeamView() {
 
   const handleToggleProjectFavorite = (projectId: string) => {
     toggleFavorite('project', projectId);
-    setFavorites(getFavorites('project'));
+    setProjectFavorites(getFavorites('project'));
   };
 
   return (
@@ -57,7 +69,7 @@ export default function TeamView() {
             <TableRow key={`project_${project.id}`}>
               <TableCell>
                 <button onClick={() => handleToggleProjectFavorite(project.id)}>
-                  {favorites[project.id] ? (
+                  {projectFavorites[project.id] ? (
                     <Star className="text-yellow-500" />
                   ) : (
                     <Star className="text-gray-400" />
